@@ -19,21 +19,13 @@ Provides code completion, hover information, go-to-definition, and diagnostics f
 
 ## Configuration
 
-By default, the extension auto-detects `php` on your PATH and the `maho` CLI in the workspace root. You can override this in VS Code settings:
+By default, the extension uses `php` from your PATH and the `maho` CLI in the workspace root. You can override the PHP command in VS Code settings via `maho.phpCommand`:
 
 ### Custom PHP path
 
 ```json
 {
-  "maho.phpPath": "/usr/local/bin/php8.3"
-}
-```
-
-### Custom maho CLI path
-
-```json
-{
-  "maho.mahoPath": "/path/to/maho"
+  "maho.phpCommand": "/usr/local/bin/php8.3"
 }
 ```
 
@@ -41,7 +33,7 @@ By default, the extension auto-detects `php` on your PATH and the `maho` CLI in 
 
 ```json
 {
-  "maho.customCommand": ["docker", "compose", "exec", "-T", "php", "php", "./maho", "dev:lsp:start"]
+  "maho.phpCommand": "docker exec mycontainer php"
 }
 ```
 

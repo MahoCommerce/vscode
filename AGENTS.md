@@ -61,9 +61,9 @@ npx ovsx publish -p <access-token>
 Single-file extension (`src/extension.ts`) using the `vscode-languageclient` package:
 
 - **`activate()`** — called when VS Code detects a `maho` file in the workspace root. It:
-  1. Checks for a user-configured custom command override
-  2. Falls back to auto-detection: finds `maho` CLI in workspace root + `php` on PATH
-  3. Starts a `LanguageClient` that runs `php ./maho dev:lsp:start`
+  1. Checks for `maho` CLI in the workspace root
+  2. Reads the `maho.phpCommand` setting (defaults to `php`), splits it, and prepends it to `./maho dev:lsp:start`
+  3. Starts a `LanguageClient` with the resulting command
 - **`deactivate()`** — stops the language client
 
 The extension itself does not contain the LSP server — it delegates to the `maho` CLI (part of the Maho ecommerce framework, v26.5+) which runs the actual LSP.
