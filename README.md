@@ -112,31 +112,6 @@ Reports unresolved aliases as warnings (source: `maho-intelligence`). Diagnostic
 
 **XML** — detects unresolved aliases in `<class>`, `<source_model>`, `<backend_model>`, `<frontend_model>`, `<render>`, `<renderer>`, `<block type="...">`, and `<model>` (cron callback) contexts.
 
-## Development
-
-### Testing locally
-
-1. Open this project in VS Code
-2. Press `F5` to launch a new VS Code window with the extension loaded
-3. In the new window, open a Maho project folder
-4. The extension activates when it detects the `maho` file in the workspace root
-
-### Building
-
-```bash
-npm install          # Install dependencies
-npm run compile      # Compile TypeScript
-npm run watch        # Watch mode for development
-```
-
-### Publishing
-
-```bash
-npx @vscode/vsce package    # Package as .vsix
-npx @vscode/vsce publish    # Publish to VS Code Marketplace
-npx ovsx publish -p <token> # Publish to Open VSX Registry
-```
-
 ## License
 
 MIT
