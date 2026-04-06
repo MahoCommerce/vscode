@@ -2,7 +2,7 @@
   "name": "maho",
   "displayName": "Maho",
   "description": "Maho Intelligence LSP integration for the Maho ecommerce platform",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "publisher": "mahocommerce",
   "license": "MIT",
   "repository": {
