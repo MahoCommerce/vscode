@@ -1,0 +1,11 @@
+.github/
+.idea/
+.vscode/
+src/
+out/
+dist/**/*.map
+node_modules/
+tsconfig.json
+AGENTS.md
+CLAUDE.md
+.gitignore

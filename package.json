@@ -2,7 +2,7 @@
   "name": "maho",
   "displayName": "Maho",
   "description": "Maho Intelligence LSP integration for the Maho ecommerce platform",
-  "version": "0.0.1",
+  "version": "0.8.0",
   "publisher": "mahocommerce",
   "license": "MIT",
   "repository": {
@@ -27,7 +27,7 @@
   "activationEvents": [
     "workspaceContains:maho"
   ],
-  "main": "./out/extension.js",
+  "main": "./dist/extension.js",
   "contributes": {
     "configuration": {
       "title": "Maho",
@@ -54,16 +54,18 @@
     }
   },
   "scripts": {
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
-    "package": "vsce package"
+    "compile": "esbuild src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node --sourcemap",
+    "watch": "esbuild src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node --sourcemap --watch",
+    "package": "npm run compile && vsce package",
+    "typecheck": "tsc -p ./ --noEmit"
   },
   "dependencies": {
     "vscode-languageclient": "^9.0.1"
   },
   "devDependencies": {
-    "@types/vscode": "^1.75.0",
     "@types/node": "^20.0.0",
+    "@types/vscode": "^1.75.0",
+    "esbuild": "^0.28.0",
     "typescript": "^5.7.0"
   }
 }
