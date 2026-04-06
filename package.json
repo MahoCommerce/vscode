@@ -2,7 +2,7 @@
   "name": "maho",
   "displayName": "Maho",
   "description": "Maho Intelligence LSP integration for the Maho ecommerce platform",
-  "version": "0.8.2",
+  "version": "0.9.0",
   "publisher": "mahocommerce",
   "license": "MIT",
   "repository": {
@@ -32,23 +32,10 @@
     "configuration": {
       "title": "Maho",
       "properties": {
-        "maho.phpPath": {
+        "maho.phpCommand": {
           "type": "string",
-          "default": "",
-          "description": "Path to the PHP binary. If empty, uses `php` from PATH."
-        },
-        "maho.mahoPath": {
-          "type": "string",
-          "default": "",
-          "description": "Path to the `maho` CLI. If empty, auto-detects in the workspace root."
-        },
-        "maho.customCommand": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "default": [],
-          "description": "Custom command to start the LSP server (e.g. [\"docker\", \"compose\", \"exec\", \"-T\", \"php\", \"php\", \"./maho\", \"dev:lsp:start\"]). Overrides phpPath and mahoPath."
+          "default": "php",
+          "description": "PHP command prepended to `./maho dev:lsp:start`. Supports simple paths (e.g. `/usr/local/bin/php`) or Docker-style invocations (e.g. `docker exec mycontainer php`)."
         }
       }
     }

@@ -15,26 +15,15 @@ export function activate(context: ExtensionContext): void {
         return;
     }
 
-    const config = workspace.getConfiguration('maho');
-    const customCommand: string[] = config.get('customCommand', []);
-
-    let command: string;
-    let args: string[];
-
-    if (customCommand.length > 0) {
-        [command, ...args] = customCommand;
-    } else {
-        const mahoPathSetting: string = config.get('mahoPath', '');
-        const mahoPath = mahoPathSetting || path.join(workspaceFolder.uri.fsPath, 'maho');
-
-        if (!fs.existsSync(mahoPath)) {
-            return;
-        }
-
-        const phpPath: string = config.get('phpPath', '') || 'php';
-        command = phpPath;
-        args = [mahoPath, 'dev:lsp:start'];
+    const mahoPath = path.join(workspaceFolder.uri.fsPath, 'maho');
+    if (!fs.existsSync(mahoPath)) {
+        return;
     }
+
+    const config = workspace.getConfiguration('maho');
+    const phpCommand: string = config.get('phpCommand', 'php');
+    const parts = phpCommand.split(/\s+/).filter(Boolean);
+    const [command, ...args] = [...parts, mahoPath, 'dev:lsp:start'];
 
     const serverOptions: ServerOptions = {
         command,
