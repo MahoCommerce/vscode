@@ -11,7 +11,10 @@ Provides code completion, hover information, go-to-definition, and diagnostics f
 
 ## Setup
 
-1. Install the extension from the VS Code Marketplace
+1. Install the extension:
+   - **VSCodium**: Install from [Open VSX Registry](https://open-vsx.org/extension/mahocommerce/maho)
+   - **VS Code**: Marketplace listing is work in progress
+   - **Manual install**: Download the `.vsix` file from the [latest release](https://github.com/MahoCommerce/vscode/releases/latest), then run `code --install-extension maho-*.vsix` (or `codium --install-extension maho-*.vsix` for VSCodium)
 2. Open a Maho project — the extension activates automatically when it detects a `maho` file in the workspace root
 
 ## Configuration
