@@ -23,7 +23,16 @@ jobs:
 
       - run: npx @vscode/vsce package
 
-      - name: Upload .vsix to release
-        run: gh release upload ${{ github.ref_name }} *.vsix
+      # Immutable releases are sealed on publish and cannot receive assets afterward,
+      # so the .vsix must be attached atomically at creation. Idempotent: if the release
+      # was already created out-of-band, skip rather than fail.
+      - name: Create release with .vsix
         env:
           GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "Release $TAG already exists; immutable releases cannot receive late assets — skipping."
+          else
+            gh release create "$TAG" *.vsix --title "$TAG" --generate-notes
+          fi
