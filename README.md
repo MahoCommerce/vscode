@@ -6,6 +6,7 @@ Provides code completion, hover information, go-to-definition, and diagnostics f
 
 ## Prerequisites
 
+- VS Code or VSCodium 1.101 or later
 - [Maho](https://mahocommerce.com) 26.5 or later
 - PHP available on your PATH (or configured via settings)
 
