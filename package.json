@@ -2,7 +2,7 @@
   "name": "maho",
   "displayName": "Maho",
   "description": "Maho Intelligence LSP integration for the Maho ecommerce platform",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "publisher": "mahocommerce",
   "license": "MIT",
   "repository": {
@@ -35,10 +35,16 @@
         "maho.phpCommand": {
           "type": "string",
           "default": "php",
-          "description": "PHP command prepended to `./maho dev:lsp:start`. Supports simple paths (e.g. `/usr/local/bin/php`) or Docker-style invocations (e.g. `docker exec mycontainer php`)."
+          "description": "PHP command prepended to `./maho dev:lsp:start` and `./maho dev:mcp:start`. Supports simple paths (e.g. `/usr/local/bin/php`) or Docker-style invocations (e.g. `docker exec mycontainer php`)."
         }
       }
-    }
+    },
+    "mcpServerDefinitionProviders": [
+      {
+        "id": "maho-intelligence-mcp",
+        "label": "Maho Intelligence"
+      }
+    ]
   },
   "scripts": {
     "compile": "esbuild src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node --sourcemap",
@@ -51,7 +57,7 @@
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
-    "@types/vscode": "^1.75.0",
+    "@types/vscode": "^1.101.0",
     "esbuild": "^0.28.1",
     "typescript": "^5.7.0"
   }

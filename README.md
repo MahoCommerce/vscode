@@ -104,6 +104,15 @@ Reports unresolved aliases as warnings (source: `maho-intelligence`). Diagnostic
 
 **XML** — detects unresolved aliases in `<class>`, `<source_model>`, `<backend_model>`, `<frontend_model>`, `<render>`, `<renderer>`, `<block type="...">`, and `<model>` (cron callback) contexts.
 
+## AI agent integration (MCP)
+
+In addition to the LSP, the extension registers Maho's [Model Context Protocol](https://modelcontextprotocol.io) server with the editor's AI agent, so the agent can query your Maho project's intelligence directly. It runs `./maho dev:mcp:start` over stdio, scoped to the workspace and using the same `maho.phpCommand` setting as the LSP — no manual MCP configuration needed.
+
+- **VS Code**: the MCP server is discovered automatically by Copilot agent mode (requires VS Code 1.101 or later).
+- **VSCodium / other agents**: registration is harmless but only takes effect if your agent consumes VS Code's MCP registry. Agents with their own MCP config (Cline, Continue, etc.) should add `./maho dev:mcp:start` manually.
+
+Requires Maho with MCP support (`react/stream` installed: `composer require react/stream`).
+
 ## License
 
 MIT
