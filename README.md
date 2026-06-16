@@ -1,8 +1,7 @@
 # Maho for VS Code
 
-[![VS Code Marketplace](https://img.shields.io/visual-studio-marketplace/v/MahoCommerce.maho?label=VS%20Code%20Marketplace&logo=visualstudiocode)](https://marketplace.visualstudio.com/items?itemName=MahoCommerce.maho)
-[![Open VSX](https://img.shields.io/open-vsx/v/mahocommerce/maho?label=Open%20VSX&logo=vscodium)](https://open-vsx.org/extension/mahocommerce/maho)
-[![Installs](https://img.shields.io/visual-studio-marketplace/i/MahoCommerce.maho?label=installs)](https://marketplace.visualstudio.com/items?itemName=MahoCommerce.maho)
+[![Get from VS Code Marketplace](https://img.shields.io/badge/Get_from-VS_Code_Marketplace-000000?style=for-the-badge&logo=visualstudiocode&logoColor=white)](https://marketplace.visualstudio.com/items?itemName=MahoCommerce.maho)
+[![Get from Open VSX](https://img.shields.io/badge/Get_from-Open_VSX-000000?style=for-the-badge&logo=vscodium&logoColor=white)](https://open-vsx.org/extension/mahocommerce/maho)
 
 [Maho Intelligence](https://mahocommerce.com) LSP integration for [Visual Studio Code](https://code.visualstudio.com).
 
