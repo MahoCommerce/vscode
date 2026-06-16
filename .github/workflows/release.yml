@@ -12,6 +12,7 @@ jobs:
       contents: write
     env:
       OVSX_TOKEN: ${{ secrets.OVSX_TOKEN }}
+      VSCE_PAT: ${{ secrets.VSCE_PAT }}
     steps:
       - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
 
@@ -44,3 +45,9 @@ jobs:
       - name: Publish to Open VSX
         if: ${{ env.OVSX_TOKEN != '' }}
         run: npx ovsx publish *.vsix -p "$OVSX_TOKEN"
+
+      # Publishes to the VS Code Marketplace. Skipped when the VSCE_PAT secret is
+      # not set, so the workflow still succeeds without it.
+      - name: Publish to VS Code Marketplace
+        if: ${{ env.VSCE_PAT != '' }}
+        run: npx @vscode/vsce publish --packagePath *.vsix -p "$VSCE_PAT"
