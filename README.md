@@ -1,6 +1,6 @@
 # Maho for VS Code
 
-[![Get from VS Code Marketplace](https://img.shields.io/badge/Get_from-VS_Code_Marketplace-000000?style=for-the-badge&logo=visualstudiocode&logoColor=white)](https://marketplace.visualstudio.com/items?itemName=MahoCommerce.maho)
+[![Get from VS Code Marketplace](https://img.shields.io/badge/Get_from-VS_Code_Marketplace-000000?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0yMy4xNSAyLjU4N0wxOC4yMS4yMWExLjQ5NCAxLjQ5NCAwIDAgMC0xLjcwNS4yOWwtOS40NiA4LjYzLTQuMTItMy4xMjhhLjk5OS45OTkgMCAwIDAtMS4yNzYuMDU3TC4zMjcgNy4yNjFBMSAxIDAgMCAwIC4zMjYgOC43NEwzLjg5OSAxMiAuMzI2IDE1LjI2YTEgMSAwIDAgMCAuMDAxIDEuNDc5TDEuNjUgMTcuOTRhLjk5OS45OTkgMCAwIDAgMS4yNzYuMDU3bDQuMTItMy4xMjggOS40NiA4LjYzYTEuNDkyIDEuNDkyIDAgMCAwIDEuNzA0LjI5bDQuOTQyLTIuMzc3QTEuNSAxLjUgMCAwIDAgMjQgMjAuMDZWMy45MzlhMS41IDEuNSAwIDAgMC0uODUtMS4zNTJ6bS01LjE0NiAxNC44NjFMMTAuODI2IDEybDcuMTc4LTUuNDQ4djEwLjg5NnoiLz48L3N2Zz4=)](https://marketplace.visualstudio.com/items?itemName=MahoCommerce.maho)
 [![Get from Open VSX](https://img.shields.io/badge/Get_from-Open_VSX-000000?style=for-the-badge&logo=vscodium&logoColor=white)](https://open-vsx.org/extension/mahocommerce/maho)
 
 [Maho Intelligence](https://mahocommerce.com) LSP integration for [Visual Studio Code](https://code.visualstudio.com).
