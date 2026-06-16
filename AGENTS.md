@@ -32,29 +32,38 @@ The Output panel (`View > Output`, then select "Maho Intelligence LSP" from the 
 
 ## Publishing
 
-The extension is published to the VS Code Marketplace under the `mahocommerce` publisher.
+The extension is published to three channels under the `mahocommerce` publisher:
+
+- **VS Code Marketplace** — https://marketplace.visualstudio.com/items?itemName=MahoCommerce.maho
+- **Open VSX Registry** (VSCodium, Gitpod, etc.) — https://open-vsx.org/extension/mahocommerce/maho
+- **GitHub Releases** — the packaged `.vsix` is attached to each release
+
+### Automated (preferred)
+
+Publishing is fully automated by `.github/workflows/release.yml`. Pushing a `vX.Y.Z` tag builds the `.vsix`, creates the GitHub release with it attached, and publishes to Open VSX and the VS Code Marketplace.
 
 ```bash
-# Login to the publisher (requires a Personal Access Token from https://dev.azure.com)
-npx @vscode/vsce login mahocommerce
-
-# Package into a .vsix file
-npx @vscode/vsce package
-
-# Publish to the Marketplace
-npx @vscode/vsce publish
-
-# Or bump version and publish in one step
-npx @vscode/vsce publish patch   # 0.0.1 -> 0.0.2
-npx @vscode/vsce publish minor   # 0.0.x -> 0.1.0
-npx @vscode/vsce publish major   # 0.x.y -> 1.0.0
+npm version patch --no-git-tag-version   # bump package.json (0.10.x -> 0.10.x+1)
+git commit -am "Bump version to X.Y.Z"
+git push
+git tag vX.Y.Z && git push origin vX.Y.Z  # triggers the release workflow
 ```
 
-To publish on the Open VSX Registry (used by VSCodium, Gitpod, etc.):
+The publish steps are gated on repository secrets and are skipped (not failed) when a secret is absent:
+
+- `OVSX_TOKEN` — Open VSX access token
+- `VSCE_PAT` — Azure DevOps Personal Access Token (scope: **Marketplace → Manage**), created under the **Microsoft account** identity that owns the `MahoCommerce` publisher (not an Entra/work-tenant identity, or publishing is denied). PATs expire within 1 year and must be rotated.
+
+GitHub release creation must attach the `.vsix` atomically because the org uses **immutable releases** (assets cannot be added after publish). A burned tag name (from a failed immutable release) cannot be reused — bump the version instead.
+
+### Manual (fallback)
 
 ```bash
-npx ovsx publish -p <access-token>
+npx @vscode/vsce publish --packagePath maho-*.vsix -p <VSCE_PAT>   # VS Code Marketplace
+npx ovsx publish maho-*.vsix -p <OVSX_TOKEN>                       # Open VSX
 ```
+
+The VS Code Marketplace also supports a no-token browser upload at https://marketplace.visualstudio.com/manage/publishers/mahocommerce (New extension → Visual Studio Code).
 
 ## Architecture
 

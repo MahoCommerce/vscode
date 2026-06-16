@@ -1,5 +1,9 @@
 # Maho for VS Code
 
+[![VS Code Marketplace](https://img.shields.io/visual-studio-marketplace/v/MahoCommerce.maho?label=VS%20Code%20Marketplace&logo=visualstudiocode)](https://marketplace.visualstudio.com/items?itemName=MahoCommerce.maho)
+[![Open VSX](https://img.shields.io/open-vsx/v/mahocommerce/maho?label=Open%20VSX&logo=vscodium)](https://open-vsx.org/extension/mahocommerce/maho)
+[![Installs](https://img.shields.io/visual-studio-marketplace/i/MahoCommerce.maho?label=installs)](https://marketplace.visualstudio.com/items?itemName=MahoCommerce.maho)
+
 [Maho Intelligence](https://mahocommerce.com) LSP integration for [Visual Studio Code](https://code.visualstudio.com).
 
 Provides code completion, hover information, go-to-definition, and diagnostics for Maho's class alias system across PHP and XML files.
@@ -13,8 +17,8 @@ Provides code completion, hover information, go-to-definition, and diagnostics f
 ## Setup
 
 1. Install the extension:
-   - **VSCodium**: Install from [Open VSX Registry](https://open-vsx.org/extension/mahocommerce/maho)
-   - **VS Code**: Marketplace listing is work in progress
+   - **VS Code**: Install from the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=MahoCommerce.maho), or search for "Maho" in the Extensions view (`Cmd+Shift+X` / `Ctrl+Shift+X`)
+   - **VSCodium**: Install from the [Open VSX Registry](https://open-vsx.org/extension/mahocommerce/maho)
    - **Manual install**: Download the `.vsix` file from the [latest release](https://github.com/MahoCommerce/vscode/releases/latest), then run `code --install-extension maho-*.vsix` (or `codium --install-extension maho-*.vsix` for VSCodium)
 2. Open a Maho project — the extension activates automatically when it detects a `maho` file in the workspace root
 
