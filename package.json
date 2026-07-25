@@ -2,7 +2,7 @@
   "name": "maho",
   "displayName": "Maho",
   "description": "Maho Intelligence LSP integration for the Maho ecommerce platform",
-  "version": "0.10.6",
+  "version": "0.10.7",
   "publisher": "mahocommerce",
   "license": "MIT",
   "repository": {
@@ -53,7 +53,7 @@
     "typecheck": "tsc -p ./ --noEmit"
   },
   "dependencies": {
-    "vscode-languageclient": "^9.0.1"
+    "vscode-languageclient": "^10.1.0"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
