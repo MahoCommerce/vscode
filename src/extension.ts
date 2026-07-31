@@ -9,6 +9,7 @@ import {
 } from 'vscode-languageclient/node';
 
 let client: LanguageClient | undefined;
+const MAHO_SCRIPT = './maho';
 
 export function activate(context: ExtensionContext): void {
     const workspaceFolder = workspace.workspaceFolders?.[0];
@@ -26,12 +27,14 @@ export function activate(context: ExtensionContext): void {
     const parts = phpCommand.split(/\s+/).filter(Boolean);
     const cwd = workspaceFolder.uri.fsPath;
 
-    startLspClient(parts, mahoPath, cwd);
-    registerMcpServer(context, parts, mahoPath, workspaceFolder.uri);
+    // Relative to cwd, not the host absolute path: the PHP command may run in another
+    // filesystem namespace (e.g. `docker exec -w /app php`) where that path is absent.
+    startLspClient(parts, MAHO_SCRIPT, cwd);
+    registerMcpServer(context, parts, MAHO_SCRIPT, workspaceFolder.uri);
 }
 
-function startLspClient(phpParts: string[], mahoPath: string, cwd: string): void {
-    const [command, ...args] = [...phpParts, mahoPath, 'dev:lsp:start'];
+function startLspClient(phpParts: string[], mahoScript: string, cwd: string): void {
+    const [command, ...args] = [...phpParts, mahoScript, 'dev:lsp:start'];
 
     const serverOptions: ServerOptions = {
         command,
@@ -65,14 +68,14 @@ function startLspClient(phpParts: string[], mahoPath: string, cwd: string): void
 function registerMcpServer(
     context: ExtensionContext,
     phpParts: string[],
-    mahoPath: string,
+    mahoScript: string,
     workspaceUri: vscode.Uri,
 ): void {
     if (!vscode.lm?.registerMcpServerDefinitionProvider) {
         return;
     }
 
-    const [command, ...args] = [...phpParts, mahoPath, 'dev:mcp:start'];
+    const [command, ...args] = [...phpParts, mahoScript, 'dev:mcp:start'];
 
     const provider: vscode.McpServerDefinitionProvider = {
         provideMcpServerDefinitions() {

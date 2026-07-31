@@ -12,12 +12,13 @@ This is a VS Code extension written in TypeScript.
 
 ```bash
 npm install          # Install dependencies
+npm run typecheck    # Typecheck with tsc (esbuild does not typecheck)
 npm run compile      # Compile TypeScript to JavaScript
 npm run watch        # Watch mode for development
 npm run package      # Package as .vsix for distribution
 ```
 
-There are no tests configured in this project.
+There are no tests configured in this project. `.github/workflows/ci.yml` runs typecheck, compile and `vsce package` on every push to `main` and every PR; the release workflow repeats the typecheck before publishing. Note that `npm run compile` is a bare esbuild bundle: it strips types without checking them, so a passing build proves nothing about type correctness on its own.
 
 ## Testing locally
 
@@ -73,6 +74,9 @@ Single-file extension (`src/extension.ts`) using the `vscode-languageclient` pac
   1. Checks for `maho` CLI in the workspace root
   2. Reads the `maho.phpCommand` setting (defaults to `php`), splits it, and prepends it to `./maho dev:lsp:start`
   3. Starts a `LanguageClient` with the resulting command
+  4. Registers Maho's MCP server (`./maho dev:mcp:start`) via `vscode.lm.registerMcpServerDefinitionProvider`, feature-detected so hosts without the API skip it
 - **`deactivate()`** — stops the language client
+
+The script is always passed as the relative `./maho` with `cwd` set to the workspace root, never as a host absolute path, which would not exist when `maho.phpCommand` runs PHP inside a container. The absolute path is used only for the `fs.existsSync` activation check.
 
 The extension itself does not contain the LSP server — it delegates to the `maho` CLI (part of the Maho ecommerce framework, v26.5+) which runs the actual LSP.
