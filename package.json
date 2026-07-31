@@ -35,7 +35,7 @@
         "maho.phpCommand": {
           "type": "string",
           "default": "php",
-          "description": "PHP command prepended to `./maho dev:lsp:start` and `./maho dev:mcp:start`. Supports simple paths (e.g. `/usr/local/bin/php`) or Docker-style invocations (e.g. `docker exec mycontainer php`)."
+          "description": "PHP command prepended to `./maho dev:lsp:start` and `./maho dev:mcp:start`, run from the workspace root. Supports simple paths (e.g. `/usr/local/bin/php`) or Docker-style invocations. For Docker, set the container working directory so `./maho` resolves (e.g. `docker exec -w /var/www/html mycontainer php`)."
         }
       }
     },
