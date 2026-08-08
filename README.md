@@ -35,15 +35,20 @@ By default, the extension uses `php` from your PATH and the `maho` CLI in the wo
 
 ### Docker
 
-The configured command is run with the workspace root as its working directory, and the script is passed as `./maho`. When PHP runs inside a container, pass `-w` with the project's path *inside the container* so `./maho` resolves there:
+The configured command is run with the workspace root as its working directory, and the script is passed as `./maho`. When PHP runs inside a container, pass `-i` to keep stdin open and `-w` with the project's path *inside the container* so `./maho` resolves there:
 
 ```json
 {
-  "maho.phpCommand": "docker exec -w /var/www/html mycontainer php"
+  "maho.phpCommand": "docker exec -i -w /var/www/html mycontainer php"
 }
 ```
 
-Without `-w`, `./maho` resolves against the container's own working directory, which is usually not the project root.
+Both flags are required:
+
+- **`-i`** keeps the container process' stdin open. The extension talks to the LSP server over stdio, so without it the server sees end-of-input and shuts down immediately after startup.
+- **`-w`** sets the working directory. Without it, `./maho` resolves against the container's own working directory, which is usually not the project root.
+
+Do **not** add `-t`: it allocates a TTY, which corrupts the LSP protocol stream.
 
 ## Features
 

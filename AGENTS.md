@@ -79,4 +79,6 @@ Single-file extension (`src/extension.ts`) using the `vscode-languageclient` pac
 
 The script is always passed as the relative `./maho` with `cwd` set to the workspace root, never as a host absolute path, which would not exist when `maho.phpCommand` runs PHP inside a container. The absolute path is used only for the `fs.existsSync` activation check.
 
+Container-based `maho.phpCommand` values must include both `docker exec -i` (stdin stays open — the LSP transport is stdio, and without it the server exits right after startup) and `-w <project path in container>` (so `./maho` resolves). The documented examples in `README.md` and `package.json` show both flags; keep them in sync.
+
 The extension itself does not contain the LSP server — it delegates to the `maho` CLI (part of the Maho ecommerce framework, v26.5+) which runs the actual LSP.
