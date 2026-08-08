@@ -68,7 +68,7 @@ The VS Code Marketplace also supports a no-token browser upload at https://marke
 
 ## Architecture
 
-Single-file extension (`src/extension.ts`) using the `vscode-languageclient` package:
+`src/extension.ts` (the extension itself) plus `src/pathMapping.ts` (pure path helpers), using the `vscode-languageclient` package:
 
 - **`activate()`** — called when VS Code detects a `maho` file in the workspace root. It:
   1. Checks for `maho` CLI in the workspace root
@@ -78,6 +78,10 @@ Single-file extension (`src/extension.ts`) using the `vscode-languageclient` pac
 - **`deactivate()`** — stops the language client
 
 The script is always passed as the relative `./maho` with `cwd` set to the workspace root, never as a host absolute path, which would not exist when `maho.phpCommand` runs PHP inside a container. The absolute path is used only for the `fs.existsSync` activation check.
+
+When PHP runs in another filesystem namespace, the server reports its own absolute paths, which the client cannot open (issue #14). The extension probes the server-side project root once at activation by running `<phpCommand> -r 'echo getcwd();'` with `cwd` set to the workspace root — the process's own cwd *is* the remote project root by construction, so this works for docker/ssh/ddev alike, unlike parsing `-w` out of the command line. The root feeds a `protocol2Code` URI converter, so every inbound URI is translated at one point rather than per request handler. Outbound URIs keep the default conversion deliberately: the server already accepts the local paths the client sends today. If the probe cannot report a root, `inferRemoteRoot` in `src/pathMapping.ts` recovers it from a single response path by stripping leading segments until the remainder resolves in the workspace. Roots that match — a plain local `php` — disable all of it.
+
+`src/pathMapping.ts` works exclusively on URI path strings (always `/`-separated, `/c:`-prefixed on Windows), never native paths, so one set of posix string operations covers every host. It imports nothing, including `vscode`, so it can be exercised with plain node.
 
 Container-based `maho.phpCommand` values must include both `docker exec -i` (stdin stays open — the LSP transport is stdio, and without it the server exits right after startup) and `-w <project path in container>` (so `./maho` resolves). The documented examples in `README.md` and `package.json` show both flags; keep them in sync.
 

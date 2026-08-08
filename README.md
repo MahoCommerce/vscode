@@ -50,6 +50,8 @@ Both flags are required:
 
 Do **not** add `-t`: it allocates a TTY, which corrupts the LSP protocol stream.
 
+Paths are mapped for you. The language server reports files using the container's paths (`/var/www/html/app/code/...`), which VS Code cannot open; the extension detects the container's project root on startup and rewrites those paths to their workspace equivalents, so Go to Definition and diagnostics land on the right local file. No extra setting is needed, and nothing is rewritten when PHP runs locally.
+
 ## Features
 
 All features work across both **PHP** and **XML** files.
