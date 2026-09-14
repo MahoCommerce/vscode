@@ -8,6 +8,7 @@
     "outDir": "out",
     "rootDir": "src",
     "sourceMap": true,
+    "types": ["node"],
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true
