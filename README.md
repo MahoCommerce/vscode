@@ -9,7 +9,7 @@ Provides code completion, hover information, go-to-definition, and diagnostics f
 
 ## Prerequisites
 
-- VS Code or VSCodium 1.101 or later
+- VS Code or VSCodium 1.136 or later
 - [Maho](https://mahocommerce.com) 26.5 or later
 - PHP available on your PATH (or configured via settings)
 
@@ -123,7 +123,7 @@ Reports unresolved aliases as warnings (source: `maho-intelligence`). Diagnostic
 
 In addition to the LSP, the extension registers Maho's [Model Context Protocol](https://modelcontextprotocol.io) server with the editor's AI agent, so the agent can query your Maho project's intelligence directly. It runs `./maho dev:mcp:start` over stdio, scoped to the workspace and using the same `maho.phpCommand` setting as the LSP — no manual MCP configuration needed.
 
-- **VS Code**: the MCP server is discovered automatically by Copilot agent mode (requires VS Code 1.101 or later).
+- **VS Code**: the MCP server is discovered automatically by Copilot agent mode.
 - **VSCodium / other agents**: registration is harmless but only takes effect if your agent consumes VS Code's MCP registry. Agents with their own MCP config (Cline, Continue, etc.) should add `./maho dev:mcp:start` manually.
 
 Requires Maho with MCP support (`react/stream` installed: `composer require react/stream`).
