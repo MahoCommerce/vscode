@@ -53,11 +53,11 @@
     "typecheck": "tsc -p ./ --noEmit"
   },
   "dependencies": {
-    "vscode-languageclient": "^10.1.2"
+    "vscode-languageclient": "^11.0.0"
   },
   "devDependencies": {
-    "@types/node": "^26.6.5",
-    "@types/vscode": "^1.140.0",
+    "@types/node": "^26.6.6",
+    "@types/vscode": "^1.144.0",
     "esbuild": "^0.28.2",
     "typescript": "^7.0.2"
   }
